@@ -33,8 +33,8 @@ export function ModernNavbar() {
           transition={{ duration: 0.55 }}
           className="relative overflow-hidden rounded-[1.2rem] border border-white/15 bg-black/35 shadow-[0_10px_60px_-22px_rgba(99,102,241,0.5)] backdrop-blur-2xl"
         >
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,0.18),rgba(255,255,255,0.01)_36%,rgba(99,102,241,0.2)_72%,rgba(236,72,153,0.12))]" />
-          <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,0.14),rgba(255,255,255,0.02)_42%,rgba(255,255,255,0.02)_100%)]" />
+          <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
           <div className="relative flex h-[4.35rem] items-center justify-between gap-3 px-3 md:px-5">
             <a
@@ -59,9 +59,8 @@ export function ModernNavbar() {
                         onFocus={() => setHoveredIndex(index)}
                         onBlur={() => setHoveredIndex(null)}
                         onClick={() => setActiveIndex(index)}
-                        className={`group relative px-4 py-2 text-sm font-medium tracking-[0.01em] transition duration-300 ${
-                          currentIndex === index ? 'text-white' : 'text-zinc-300 hover:text-zinc-100'
-                        }`}
+                        className={`group relative px-4 py-2 text-sm font-medium tracking-[0.01em] transition duration-300 ${currentIndex === index ? 'text-white' : 'text-zinc-300 hover:text-zinc-100'
+                          }`}
                       >
                         {label}
                         {currentIndex === index ? (
