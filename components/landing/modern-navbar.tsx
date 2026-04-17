@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Menu, Sparkles } from 'lucide-react';
 
@@ -19,6 +20,10 @@ const navItems = [
 ] as const;
 
 export function ModernNavbar() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const currentIndex = hoveredIndex ?? activeIndex;
+
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto max-w-7xl px-5 py-5 md:px-8">
@@ -49,15 +54,23 @@ export function ModernNavbar() {
                     <NavigationMenuItem key={label}>
                       <NavigationMenuLink
                         href={href}
-                        className="relative rounded-full px-4 py-2 text-sm text-zinc-300 transition hover:text-white"
+                        onMouseEnter={() => setHoveredIndex(index)}
+                        onMouseLeave={() => setHoveredIndex(null)}
+                        onFocus={() => setHoveredIndex(index)}
+                        onBlur={() => setHoveredIndex(null)}
+                        onClick={() => setActiveIndex(index)}
+                        className={`group relative px-4 py-2 text-sm font-medium tracking-[0.01em] transition duration-300 ${
+                          currentIndex === index ? 'text-white' : 'text-zinc-300 hover:text-zinc-100'
+                        }`}
                       >
-                        {index === 0 ? (
+                        {label}
+                        {currentIndex === index ? (
                           <motion.span
-                            layoutId="nav-active-pill-3rd"
-                            className="absolute inset-0 -z-10 rounded-full bg-white/[0.08]"
+                            layoutId="nav-moving-underline"
+                            transition={{ type: 'spring', stiffness: 520, damping: 42 }}
+                            className="pointer-events-none absolute left-3 right-3 -bottom-0.5 h-px bg-white"
                           />
                         ) : null}
-                        {label}
                       </NavigationMenuLink>
                     </NavigationMenuItem>
                   ))}
